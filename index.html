@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Title</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<link rel="stylesheet" href="./css/index.css" />
+		<!-- Bootstrap CSS v5.2.1 -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
+	</head>
+
+	<body id="HomePage">
+		<header class="d-flex align-items-lg-center">
+			<!-- logo -->
+			<div class="logo">
+				<img src="./images/logo.png" alt="" />
+			</div>
+			<!-- title -->
+			<div class="title">
+				<h2>HỆ THỐNG SINH VIÊN RIKKEI</h2>
+			</div>
+			<!-- Đăng nhập / Đăng xuất -->
+			<div class="login">
+				<!-- show tên người dùng -->
+				<span id="showUserLogin"></span>
+				<button type="button" class="btn btn-info btn-sm" onclick="renderLoginPage()">Đăng nhập</button>
+			</div>
+		</header>
+
+		<main>
+			<!-- <div class="form-login w-25 p-xl-5" id="body">
+				
+			</div> -->
+
+			<div class="container-fluid" id="body">
+				<div class="row">
+					<div class="list-group col-lg-3 p-5 main-border vh-100">
+						<button type="button" onclick="renderClass()" class="list-group-item list-group-item-action">Quản lí khóa học</button>
+						<button type="button" class="list-group-item list-group-item-action">Quản lí lớp học</button>
+						<button type="button" class="list-group-item list-group-item-action">Quản lí sinh viên</button>
+						<button type="button" class="list-group-item list-group-item-action">Quản lí tài khoản</button>
+					</div>
+					<div class="index col-lg-9 main-border vh-100" id="index">
+
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<!-- place footer here -->
+			<!-- Copyright Rikkei Academy @2023 -->
+			<div class="link main-border d-flex justify-content-center align-items-center">
+				<p>Copyright Rikkei Academy @2023</p>
+			</div>
+		</footer>
+		<!-- Bootstrap JavaScript Libraries -->
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+		<script src="./js/render-index.js"></script>
+		<script src="./js/show-user-login.js"></script>
+		<script src="./js/renderLoginPage.js"></script>
+		<script src="./js/renderHomePage.js"></script>
+		<script src="./js/addNewCourse.js"></script>
+		<script src="./js/addCourse.js"></script>
+		<script src="./js/logout.js"></script>
+		<script>
+			renderClass();
+		</script>
+
+		<script>
+			var accounts = [{ email: "admin@gmail.com", password: "123456" }, { email: "admin1@gmail.com", password: "123456" }];
+			localStorage.setItem("account", JSON.stringify(accounts));
+
+			function login() {
+				let email = document.getElementById("email").value;
+				let password = document.getElementById("password").value;
+				// console.log("Email", email);
+				// console.log("Password", password);
+				// console.log(accounts);
+				// checkAccount
+				let checkAccount = false;
+				for (const item of accounts){
+					if(item.email == email && item.password == password){
+						checkAccount = true;
+						alert("Đăng nhập thành công");
+
+						// Lưu Information người dùng đăng nhập vào localStorage
+						localStorage.setItem("account-login", email);
+						// Chuyển đến trang home
+						// window.location.href = "index.html"
+						renderHomePage();
+						// show tên đăng nhập
+						showUserLogin();
+						break;
+					}
+				}
+				if (!checkAccount){
+					alert("Sai thông tin tài khoản");
+				}
+			}
+		</script>
+		
+	</body>
+</html>
